@@ -56,13 +56,11 @@ Currently these are:
 
 * cvitek-fsbl-licheervnano
 * cvitek-middleware-licheervnano
-* cvitek-osdrv-licheervnano-kvm
+* cvitek-osdrv-licheervnano-e
 * device-key-licheervnano
-* duo-pinmux-duo256
 * gadget-nic-licheervnano
-* linux-image-licheervnano-kvm
+* linux-image-licheervnano-e
 * load-systemko-licheervnano
-* nanokvm-licheervnano
 * sensor-config-licheervnano
 
 ## How to contribute?
