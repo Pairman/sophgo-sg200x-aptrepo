@@ -1,2 +1,1 @@
-scpcom/sophgo-sg200x-debian
-scpcom/LicheeSG-Nano-Build
+Pairman/sophgo-sg200x-debian

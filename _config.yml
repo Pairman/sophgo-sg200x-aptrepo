@@ -1,15 +1,11 @@
-title: scpcom
-email: scpcom@users.noreply.github.com
 description: >- 
   This project provides debian packages for sg200x based boards.
-baseurl: ""
-url: "https://scpcom.github.io"
-github_username: scpcom
+baseurl: "/sophgo-sg200x-aptrepo"
+url: "https://pairman.github.io"
+github_username: Pairman
 
 # Build settings
 theme: minima
-plugins:
-  - jekyll-feed
 exclude:
   - tools/
   - doc/
