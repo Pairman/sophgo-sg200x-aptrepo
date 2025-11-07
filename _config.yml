@@ -1,6 +1,6 @@
 description: >- 
   This project provides debian packages for sg200x based boards.
-baseurl: "/sophgo-sg200x-aptrepo"
+baseurl: ""
 url: "https://sg200x.deb.git.pnxlr.eu.org"
 github_username: Pairman
 
