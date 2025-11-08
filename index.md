@@ -50,18 +50,24 @@ Then run `apt update && apt install -y` followed by the names of the packages yo
 Currently these are:
 
 * cvi-pinmux-cv181x
-* firmware-vcodec-cv181x
 
 ...and board-specific packages like:
 
+* board-support-licheervnano-e
 * cvitek-fsbl-licheervnano
-* cvitek-middleware-licheervnano
 * cvitek-osdrv-licheervnano-e
 * device-key-licheervnano
+* firmware-aic8800-cv181x
 * gadget-nic-licheervnano
+* linux-headers-licheervnano-e
 * linux-image-licheervnano-e
+* linux-libc-dev
 * load-systemko-licheervnano
+* overlayfs-tools
 * sensor-config-licheervnano
+* usb-device-licheervnano
+* wifi-builtin-licheervnano
+* zram-config-licheervnano
 
 ## How to contribute?
 
