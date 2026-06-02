@@ -68,6 +68,7 @@ Currently these are:
 * usb-device-licheervnano
 * wifi-builtin-licheervnano
 * zram-config-licheervnano
+* wifi-camera
 
 ## How to contribute?
 
