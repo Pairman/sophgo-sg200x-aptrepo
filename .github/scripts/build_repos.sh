@@ -61,12 +61,15 @@ main() {
   DEB_SOC=sg200x
   COMPONENTS="${DEB_SOC}"
   DEB_POOL="_site/deb/pool/${COMPONENTS:-main}"
-  DEB_DISTS_ARCHS="arm64 riscv64"
+  DEB_DISTS_ARCHS="arm64 armhf riscv64"
   DEB_DISTS="dists/${SUITE:-stable}"
   DEB_DISTS_COMPONENTS="${DEB_DISTS}/${COMPONENTS:-main}/binary-all"
   GPG_TTY=""
   export GPG_TTY
   echo "Parsing the repo list"
+  if [ ! -e .github/config/package_list.txt ]; then
+    echo ".github/config/package_list.txt not found in $(pwd)"
+  fi
   while IFS= read -r repo
   do
     if release=$(curl -fqs https://api.github.com/repos/${repo}/releases/latest)
@@ -77,6 +80,7 @@ main() {
       firmware_tar_files="$(echo "$release" | jq -r '.assets[] | select(.name | match("_firmware_.*\\.tar\\..z")) | .name')"
       kvmadmin_tar_files="$(echo "$release" | jq -r '.assets[] | select(.name | endswith("-kvmadmin.tar.gz")) | .name')"
       latest_zip_files="$(echo "$release" | jq -r '.assets[] | select(.name | endswith("-latest.zip")) | .name')"
+      linux_zip_files="$(echo "$release" | jq -r '.assets[] | select(.name | match("linux-image-.*\\.zip")) | .name')"
       echo "Parsing repo $repo at $tag"
       for deb_file in $deb_files ; do
       if [ -n "$deb_file" ]
@@ -143,6 +147,19 @@ main() {
           cp -p "$tar_compopool"/*.tar.* "$tar_compopool"/preview/
           cp -p "$tar_compopool"/*.json "$tar_compopool"/preview/
         fi
+      done
+      for zip_file in $linux_zip_files ; do
+        deb_component="$(echo ${zip_file}  | cut -d '-' -f 5)"
+        deb_compopool="_site/deb/pool/${deb_component}"
+        GOT_DEB=1
+        mkdir -p "$deb_compopool"
+        pushd "$deb_compopool" >/dev/null
+        echo "Getting DEB zip"
+        wget -q "https://github.com/${repo}/releases/download/${tag}/${zip_file}"
+        unzip -o ${zip_file}
+        rm -f ${zip_file}
+        rm -f *.bin *.sh
+        popd >/dev/null
       done
      for firmware_tar_file in $firmware_tar_files ; do
       if [ -n "$firmware_tar_file" ]
